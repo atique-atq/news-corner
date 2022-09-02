@@ -1,0 +1,17 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+.nav-item a:hover{
+    color:blue;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#profile-picture{
+    padding-left: 3px;
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+}
