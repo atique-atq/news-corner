@@ -120,7 +120,6 @@ let displayNewsDetails = (allNews) => {
 
 let displayDescription = text => (text.length > 400 ? text.slice(0, 400) + ' ...' : text)
         
-
 // returning author info
 let getInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
 

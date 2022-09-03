@@ -32,7 +32,7 @@
                     <div>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-around align-items-center ">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">News</a>
+                                <a class="nav-link" aria-current="page" href="index.html">News</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="blogs.html">Blog</a>
@@ -46,44 +46,44 @@
             </div>
         </nav>
         <!-- navbar ends -->
-
+        <hr>
         <!-- horizontal line -->
-        <div class="container text-mute">
-            <hr>
-        </div>
+
     </header>
-
     <main>
-        <!-- categories sectoin -->
-        <section class="container mb-3">
-            <div id="categories" class="d-flex justify-content-between flex-wrap">
-            </div>
-        </section>
+        <div class="container text-mute">
 
-        <!--response not found error -->
-        <div>
-            <p id="error-message" class="container text-danger">
-                something went wrong, please try again laler
+            <h6>1. what are the differences between arrow function and regular function?</h6>
+            <p> <span class="fw-bolder fst-italic">Anser: </span>Arrow function can be written in less line of code
+                compared to regular function. If one argument is passed, parentheses are not required. And also Curly
+                brackets are not required if only one expression is present. Arrow function does not have argument
+                bindings. Arrow functions doesnot support this keyword. Arrow functions must be excluded of duplicate
+                named parameters whether we can use duplicate named parameters for regular function.</p>
+
+            <h6>2. what are the differences between map, foreach, filter, find?</h6>
+            <p> <span class="fw-bolder fst-italic">Anser: </span> Map() methods are used for creating a new array from
+                an existing one, reflecting a condition to each one of the elements of the first array. Like map()
+                methods, forEach() methods iterates the element of an array, but it doesnot return a new array.
+                <br>
+                filter()
+                methods
+                are used to take each element of an array and returns the value from that array only which elements
+                fullfill the conditions. On the other hand, find() method iterates the elements of an array and only
+                return the first element which completes the condition.
             </p>
+
+            <h6>3. what are the usage of template literals?</h6>
+            <p> <span class="fw-bolder fst-italic">Anser: </span> Using template literal we can easily use multiline
+                text what was quite tough before template literals. Other than that, it also supports quote inside the
+                strings very easily. After template literals, string interpolation has become quite easy and readable
+                also. Most powerfull part is, in HTML templates, we can use template string which is often used in DOM
+                manipulation. Template literals allow expressions in strings also.</p>
         </div>
 
-        <!-- news details section -->
-        <section class="container mt-4">
-            <!-- news result count  -->
-            <div id="category-item-count" class="bg-white rounded">
-            </div>
-
-            <!-- news details -->
-            <div id="news-details-container" class="row row-cols-1 g-3 p-0">
-
-            </div>
-
-        </section>
 
     </main>
 
 
-    <script src="js/news.js"></script>
     <!-- bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
