@@ -19,7 +19,6 @@ function displayCategories(news_categories) {
         `
         categories.appendChild(div);
     });
-    console.log(news_categories);
 }
 
 //calling api to load a single category's news
@@ -38,7 +37,34 @@ function categoryDetails(category_id, category_name) {
 function displayCategoryDetails(data, category_name) {
     console.log(data);
     let categoryItemCount = document.getElementById('category-item-count');
+    // showing news result found count for this category
     categoryItemCount.innerHTML = `
     <p class="p-3 text-black-75"> <span class="fw-semibold text-black"> ${data.length} </span> news found for the category of <span class="fw-semibold fst-italic text-black"> ${category_name}</span></p>
     `
+    displayNewsDetails(data);
+}
+
+function displayNewsDetails(allNews) {
+    let newsContainer = document.getElementById('news-details-container');
+    newsContainer.innerHTML = '';
+    allNews.forEach(singleNews => {
+        let div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="border rounded d-flex flex-column flex-md-row">
+            <div class="col-md-4">
+                <img src="${singleNews.thumbnail_url}" class="h-100 w-100" alt="picture of a news">
+            </div>
+        </div>
+        <div class="col-md-8 ms-md-2 p-2 d-flex align-items-center">
+            <div>
+                <h5>${singleNews.title}</h5>
+                <small>Catch our latest UI/UX Design Course over three months duration.
+                    All of our experts are there for this course.</small>
+                <h5 class="text-info mt-3">Price: 20$</h5>
+            </div>
+        </div>
+        `
+    newsContainer.appendChild(div);    
+    });
 }
