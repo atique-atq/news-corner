@@ -77,8 +77,13 @@ let displayNewsDetails = (allNews) => {
                         </div>
 
                         <!-- view part-->
-                        <div class="ms-4">
+                        <div class="pe-3">
                             <i class="fa-solid fa-eye"></i> <small>${getInfo(singleNews.total_view, 'View info')}</small>
+                        </div>
+
+                        <!-- load more part-->
+                        <div class="me-5 text-primary fw-semibold">
+                            Load more <i class="fa-solid fa-angles-right "></i>    
                         </div>
                     </div>
                 </div>
