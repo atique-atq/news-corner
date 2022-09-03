@@ -39,6 +39,6 @@ function displayCategoryDetails(data, category_name) {
     console.log(data);
     let categoryItemCount = document.getElementById('category-item-count');
     categoryItemCount.innerHTML = `
-    <p class="p-3 fw-semibold"> ${data.length} news found for the category of ${category_name} </p>
+    <p class="p-3 text-black-75"> <span class="fw-semibold text-black"> ${data.length} </span> news found for the category of <span class="fw-semibold fst-italic text-black"> ${category_name}</span></p>
     `
 }
