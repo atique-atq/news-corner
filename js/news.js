@@ -51,6 +51,9 @@ let displayNewsDetails = (allNews) => {
     allNews.forEach(singleNews => {
         let div = document.createElement('div');
         div.classList.add('col');
+        let date = singleNews.author.published_date.split(" ")[0]
+        let formattedDate = new Date(date);
+
 
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
@@ -63,17 +66,15 @@ let displayNewsDetails = (allNews) => {
                     <h5>${singleNews.title}</h5>
                     <small>${singleNews.details}</small>
                     <div class="d-flex flex-row mt-3">
-                        <div class= "d-flex flex-row">
-                            <img style="width:30px; height:30px; border-radius:25px" src="${singleNews.author.img}" class="" alt="picture of the author">
+                        <div class= "d-flex flex-row justify-content-space-between align-items-center">
+                            <img style="width:30px; height:30px; border-radius:25px" src="${singleNews.author.img}" class="me-2" alt="picture of the author">
+                        
                             <div>
-                                <p>${getAuthorName(singleNews.author.name)}</p>
+                                <p class="p-0 m-0 fs-6"> ${getAuthorInfo(singleNews.author.name, 'Author name')}</p>
+                                <p class="p-0 m-0 fs-6 text-muted">${getAuthorInfo(date, 'Date')}</p>
                             </div>
                         </div>
-                        <div>
-
-
                     </div>
-                    <h5 class="text-info mt-3">Price: 20$</h5>
                 </div>
             </div>
         </div>
@@ -82,7 +83,5 @@ let displayNewsDetails = (allNews) => {
     });
 }
 
-
-let getAuthorName = name => { 
-    console.log(name);
-}
+// returning author info
+let getAuthorInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
