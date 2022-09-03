@@ -11,6 +11,7 @@ let loadCategories = () => {
 //displaying error
 let displayError = error => {
     document.getElementById('error-message').style.display = 'block';
+    alert(error);
 }
 
 loadCategories();
@@ -29,6 +30,7 @@ function displayCategories (news_categories) {
 
 //calling api to load a single category's news
 function categoryDetails(category_id, category_name) {
+    document.getElementById('error-message').style.display = 'none';
     //preveting category_id from being number automatically and keeping the original format
     let category_id_in_string = category_id.toString();
     if (category_id_in_string.length < 2) {
@@ -37,6 +39,7 @@ function categoryDetails(category_id, category_name) {
     fetch(`https://openapi.programming-hero.com/api/news/category/${category_id_in_string}`)
     .then(response => response.json())
     .then(data => displayCategoryDetails(data.data, category_name))
+    .catch(error => displayError(error));
 }
 
 //displaying single category news details
@@ -72,6 +75,7 @@ let displayNewsDetails = (allNews) => {
         let div = document.createElement('div');
         div.classList.add('col');
         let date = singleNews.author.published_date?.split(" ")[0];
+        let description = displayDescription(singleNews.details);
 
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
@@ -82,7 +86,7 @@ let displayNewsDetails = (allNews) => {
             <div class="col-lg-9 ps-2 pe-4 d-flex align-items-center mt-3 p-3">
                 <div>
                     <h5>${singleNews.title}</h5>
-                    <small>${singleNews.details}</small>
+                    <small>${description}</small>
                     <div class="d-flex flex-row justify-content-between align-items-center mt-3">
                         <!-- author part-->
                         <div class= "d-flex flex-row justify-content-between align-items-center">
@@ -113,6 +117,9 @@ let displayNewsDetails = (allNews) => {
     newsContainer.appendChild(div);    
     });
 }
+
+let displayDescription = text => (text.length > 400 ? text.slice(0, 400) + ' ...' : text)
+        
 
 // returning author info
 let getInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
