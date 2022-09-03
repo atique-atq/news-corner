@@ -61,18 +61,24 @@ let displayNewsDetails = (allNews) => {
                     <img src="${singleNews.thumbnail_url}" alt="related picture of a news">
   
             </div>
-            <div class="col-md-9 p-2 d-flex align-items-center">
+            <div class="col-md-9 ps-2 pe-4 d-flex align-items-center">
                 <div>
                     <h5>${singleNews.title}</h5>
                     <small>${singleNews.details}</small>
-                    <div class="d-flex flex-row mt-3">
-                        <div class= "d-flex flex-row justify-content-space-between align-items-center">
+                    <div class="d-flex flex-row justify-content-between align-items-center mt-3">
+                        <!-- author part-->
+                        <div class= "d-flex flex-row justify-content-between align-items-center">
                             <img style="width:30px; height:30px; border-radius:25px" src="${singleNews.author.img}" class="me-2" alt="picture of the author">
                         
                             <div>
-                                <p class="p-0 m-0 fs-6"> ${getAuthorInfo(singleNews.author.name, 'Author name')}</p>
-                                <p class="p-0 m-0 fs-6 text-muted">${getAuthorInfo(date, 'Date')}</p>
+                                <p class="p-0 m-0 fs-6"> ${getInfo(singleNews.author.name, 'Author name')}</p>
+                                <p class="p-0 m-0 fs-6 text-muted">${getInfo(date, 'Date')}</p>
                             </div>
+                        </div>
+
+                        <!-- view part-->
+                        <div class="ms-4">
+                            <i class="fa-solid fa-eye"></i> <small>${getInfo(singleNews.total_view, 'View info')}</small>
                         </div>
                     </div>
                 </div>
@@ -84,4 +90,4 @@ let displayNewsDetails = (allNews) => {
 }
 
 // returning author info
-let getAuthorInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
+let getInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
