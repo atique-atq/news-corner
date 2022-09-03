@@ -1,7 +1,5 @@
-loadCategories();
-
 //calling api for news categories
-function loadCategories() {
+let loadCategories = () =>{
     fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(response => response.json())
     .then(data => displayCategories(data.data.news_category))
@@ -9,13 +7,15 @@ function loadCategories() {
     
 }
 
+loadCategories();
+
 // displaying the categories
-function displayCategories(news_categories) {
+function displayCategories (news_categories) {
     let categories = document.getElementById('categories');     
     news_categories.forEach(category => {
         let div = document.createElement('div');
         div.innerHTML = `
-        <h6 onclick="categoryDetails('${category.category_id}', '${category.category_name}')">${category.category_name}</h6>
+        <p onclick="categoryDetails('${category.category_id}', '${category.category_name}')">${category.category_name}</p>
         `
         categories.appendChild(div);
     });
@@ -37,8 +37,6 @@ function categoryDetails(category_id, category_name) {
 function displayCategoryDetails(data, category_name) {
     let categoryItemCount = document.getElementById('category-item-count');
     categoryItemCount.innerHTML = '';
-    console.log(data)
-    console.log(data.length)
     // showing news result found count for this category
     categoryItemCount.innerHTML = `
     <p class="p-3 text-black-75"> <span class="fw-semibold text-black"> ${data.length} </span> news found for the category of <span class="fw-semibold fst-italic text-black"> ${category_name}</span></p>
@@ -48,12 +46,17 @@ function displayCategoryDetails(data, category_name) {
 
 let displayNewsDetails = (allNews) => {
     let newsContainer = document.getElementById('news-details-container');
+    //sorting all news with total view count
+    allNews.sort(function(a, b){
+        return b.total_view - a.total_view;
+    });
+
     // clearing previous result 
     newsContainer.innerHTML = '';
     allNews.forEach(singleNews => {
         let div = document.createElement('div');
         div.classList.add('col');
-        let date = singleNews.author.published_date?.split(" ")[0]
+        let date = singleNews.author.published_date?.split(" ")[0];
 
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
@@ -83,9 +86,9 @@ let displayNewsDetails = (allNews) => {
                             <i class="fa-solid fa-eye"></i> <small>${getInfo(singleNews.total_view, 'View info')}</small>
                         </div>
 
-                        <!-- load more part-->
-                        <div class="me-5 text-primary fw-semibold">
-                            Load more <i class="fa-solid fa-angles-right "></i>    
+                        <!-- Read more part-->
+                        <div class="me-5 ">
+                            <button type="button" class="btn btn-transparent text-info fw-semibold" onclick="loadModal()">Read more <i class="fa-solid fa-angles-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -98,3 +101,9 @@ let displayNewsDetails = (allNews) => {
 
 // returning author info
 let getInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
+
+// load modal
+function loadModal (response){
+    // console.log(Object.keys(response));
+
+};

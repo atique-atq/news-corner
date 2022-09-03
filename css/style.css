@@ -21,8 +21,8 @@ body{
     justify-content: space-between;
 }
 
-#categories h6:hover{
-    background-color: rgb(243, 241, 244);
+#categories p:hover{
+    background-color: rgb(204, 183, 214);
     color: blue;
     border-radius: 2px;
 }
