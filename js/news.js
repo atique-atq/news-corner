@@ -44,27 +44,45 @@ function displayCategoryDetails(data, category_name) {
     displayNewsDetails(data);
 }
 
-function displayNewsDetails(allNews) {
+let displayNewsDetails = (allNews) => {
     let newsContainer = document.getElementById('news-details-container');
+    // clearing previous result 
     newsContainer.innerHTML = '';
     allNews.forEach(singleNews => {
         let div = document.createElement('div');
         div.classList.add('col');
+
         div.innerHTML = `
-        <div class="border rounded d-flex flex-column flex-md-row">
-            <div class="col-md-4">
-                <img src="${singleNews.thumbnail_url}" class="h-100 w-100" alt="picture of a news">
+        <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
+            <div class="col-md-3">
+                    <img src="${singleNews.thumbnail_url}" alt="related picture of a news">
+  
             </div>
-        </div>
-        <div class="col-md-8 ms-md-2 p-2 d-flex align-items-center">
-            <div>
-                <h5>${singleNews.title}</h5>
-                <small>Catch our latest UI/UX Design Course over three months duration.
-                    All of our experts are there for this course.</small>
-                <h5 class="text-info mt-3">Price: 20$</h5>
+            <div class="col-md-9 p-2 d-flex align-items-center">
+                <div>
+                    <h5>${singleNews.title}</h5>
+                    <small>${singleNews.details}</small>
+                    <div class="d-flex flex-row mt-3">
+                        <div class= "d-flex flex-row">
+                            <img style="width:30px; height:30px; border-radius:25px" src="${singleNews.author.img}" class="" alt="picture of the author">
+                            <div>
+                                <p>${getAuthorName(singleNews.author.name)}</p>
+                            </div>
+                        </div>
+                        <div>
+
+
+                    </div>
+                    <h5 class="text-info mt-3">Price: 20$</h5>
+                </div>
             </div>
         </div>
         `
     newsContainer.appendChild(div);    
     });
+}
+
+
+let getAuthorName = name => { 
+    console.log(name);
 }
