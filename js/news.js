@@ -38,10 +38,19 @@ function displayCategoryDetails(data, category_name) {
     let categoryItemCount = document.getElementById('category-item-count');
     categoryItemCount.innerHTML = '';
     // showing news result found count for this category
-    categoryItemCount.innerHTML = `
-    <p class="p-3 text-black-75"> <span class="fw-semibold text-black"> ${data.length} </span> news found for the category of <span class="fw-semibold fst-italic text-black"> ${category_name}</span></p>
-    `
+    categoryItemCount.innerHTML = showResultCount(data, category_name); 
     displayNewsDetails(data);
+}
+
+let showResultCount = (data, category_name) => {
+    if (data.length < 1) {
+        return `No news found for the category of ${category_name}`;
+    }
+    else {
+        return `
+        <p class="p-3 text-black-75"> <span class="fw-semibold text-black"> ${data.length} </span> news found for the category of <span class="fw-semibold fst-italic text-black"> ${category_name}</span></p>
+        `  
+    }
 }
 
 let displayNewsDetails = (allNews) => {
