@@ -35,8 +35,10 @@ function categoryDetails(category_id, category_name) {
 
 //displaying single category news details
 function displayCategoryDetails(data, category_name) {
-    console.log(data);
     let categoryItemCount = document.getElementById('category-item-count');
+    categoryItemCount.innerHTML = '';
+    console.log(data)
+    console.log(data.length)
     // showing news result found count for this category
     categoryItemCount.innerHTML = `
     <p class="p-3 text-black-75"> <span class="fw-semibold text-black"> ${data.length} </span> news found for the category of <span class="fw-semibold fst-italic text-black"> ${category_name}</span></p>
@@ -51,8 +53,7 @@ let displayNewsDetails = (allNews) => {
     allNews.forEach(singleNews => {
         let div = document.createElement('div');
         div.classList.add('col');
-        let date = singleNews.author.published_date.split(" ")[0]
-        let formattedDate = new Date(date);
+        let date = singleNews.author.published_date?.split(" ")[0]
 
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
