@@ -1,10 +1,16 @@
 //calling api for news categories
-let loadCategories = () =>{
+let loadCategories = () => {
+    document.getElementById('error-message').style.display = 'none';
     fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(response => response.json())
     .then(data => displayCategories(data.data.news_category))
-    // .catch(error => displayError(error));
+    .catch(error => displayError(error));
     
+}
+
+//displaying error
+let displayError = error => {
+    document.getElementById('error-message').style.display = 'block';
 }
 
 loadCategories();
