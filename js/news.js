@@ -57,11 +57,11 @@ let displayNewsDetails = (allNews) => {
 
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
-            <div class="col-md-3">
-                    <img src="${singleNews.thumbnail_url}" alt="related picture of a news">
-  
+            <div class="col-lg-3">
+                    <img src="${singleNews.thumbnail_url}" class="h-100 w-100 p-1 p-md-5 p-lg-0" alt="related picture of a news">
             </div>
-            <div class="col-md-9 ps-2 pe-4 d-flex align-items-center">
+
+            <div class="col-lg-9 ps-2 pe-4 d-flex align-items-center">
                 <div>
                     <h5>${singleNews.title}</h5>
                     <small>${singleNews.details}</small>
