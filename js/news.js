@@ -54,22 +54,23 @@ let displayNewsDetails = (allNews) => {
         let date = singleNews.author.published_date.split(" ")[0]
         let formattedDate = new Date(date);
 
-
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
-            <div class="col-lg-3">
-                    <img src="${singleNews.thumbnail_url}" class="h-100 w-100 p-1 p-md-5 p-lg-0" alt="related picture of a news">
+            <div class="col-lg-3 text-center text-lg-start">
+                    <img src="${singleNews.thumbnail_url}" class="h-100 w-75 w-md-50 w-lg-100 p-0 p-md-5p-lg-0" alt="related picture of a news">
             </div>
 
-            <div class="col-lg-9 ps-2 pe-4 d-flex align-items-center">
+            <div class="col-lg-9 ps-2 pe-4 d-flex align-items-center mt-3 p-3">
                 <div>
                     <h5>${singleNews.title}</h5>
                     <small>${singleNews.details}</small>
                     <div class="d-flex flex-row justify-content-between align-items-center mt-3">
                         <!-- author part-->
                         <div class= "d-flex flex-row justify-content-between align-items-center">
-                            <img style="width:30px; height:30px; border-radius:25px" src="${singleNews.author.img}" class="me-2" alt="picture of the author">
-                        
+                            <!-- image part-->
+                            <img style="width:30px; height:30px; border-radius:25px" src="${singleNews.author.img}" class="me-1" alt="picture of the author">
+
+                            <!-- text part-->
                             <div>
                                 <p class="p-0 m-0 fs-6"> ${getInfo(singleNews.author.name, 'Author name')}</p>
                                 <p class="p-0 m-0 fs-6 text-muted">${getInfo(date, 'Date')}</p>
