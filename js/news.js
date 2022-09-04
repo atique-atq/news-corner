@@ -30,6 +30,7 @@ function displayCategories (news_categories) {
 
 //calling api to load a single category's news
 function categoryDetails(category_id, category_name) {
+    toggleSpinner('block');
     document.getElementById('error-message').style.display = 'none';
     //preveting category_id from being number automatically and keeping the original format
     let category_id_in_string = category_id.toString();
@@ -42,10 +43,16 @@ function categoryDetails(category_id, category_name) {
     .catch(error => displayError(error));
 }
 
+//display spinner
+let toggleSpinner = displayStatus => {
+    document.getElementById('spinner').style.display = displayStatus;
+}
+
 //displaying single category news details
 function displayCategoryDetails(data, category_name) {
     let categoryItemCount = document.getElementById('category-item-count');
     categoryItemCount.innerHTML = '';
+    toggleSpinner('none');
     // showing news result found count for this category
     categoryItemCount.innerHTML = showResultCount(data, category_name); 
     displayNewsDetails(data);

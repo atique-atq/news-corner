@@ -26,3 +26,7 @@ body{
     color: blue;
     border-radius: 2px;
 }
+
+#spinner{
+    display: none;
+}
