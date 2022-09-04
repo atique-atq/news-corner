@@ -83,7 +83,6 @@ let displayNewsDetails = (allNews) => {
         div.classList.add('col');
         let date = singleNews.author.published_date?.split(" ")[0];
         let description = displayDescription(singleNews.details);
-
         div.innerHTML = `
         <div class="border rounded d-flex justify-content-between flex-column flex-lg-row bg-white shadow border-0">
             <div class="col-lg-3 text-center text-lg-start">
@@ -114,7 +113,8 @@ let displayNewsDetails = (allNews) => {
 
                         <!-- Read more part-->
                         <div class="me-5 ">
-                            <button type="button" class="btn btn-transparent text-info fw-semibold" onclick="loadModal()">Read more <i class="fa-solid fa-angles-right"></i></button>
+                            <button type="button" class="btn btn-transparent text-info fw-semibold" 
+                            onclick="displayModalDetails('${singleNews._id}')" data-bs-toggle="modal" data-bs-target="#newsModeal">Read more <i class="fa-solid fa-angles-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,23 @@ let displayDescription = text => (text.length > 400 ? text.slice(0, 400) + ' ...
 let getInfo = (value, valueTypeName) => value ? value : valueTypeName + ' not found';
 
 // load modal
-function loadModal (response){
-    // console.log(Object.keys(response));
-
+let displayModalDetails = (news_id) => {
+    fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
+        .then(response => response.json())
+        .then(data => displaySingleNewsOpenModal(data.data[0]))
 };
+
+let displaySingleNewsOpenModal = (newsId) => {
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+            <div class = "justify-content-center align-items-center">
+                <a href=""><img id="profile-picture" src="${newsId.thumbnail_url}" alt="profile-picture"></a>
+            </div>
+        <h6 class="text-primary">News Title: ${newsId.title ? newsId.title : 'No Title Found'}</h6>
+        <p class="text-secondary">description: ${displayDescription(newsId.details)}</p>
+        <p>Author Name: ${newsId.author.name ? newsId.author.name : 'No Author Name Found'}</p>
+        <p class="text-warning">Rating: ${newsId.rating.number ? newsId.rating.number : 'No Rating Found'}</p>
+        <p class="text-warning">Rating Quality: ${newsId.rating.badge ? newsId.rating.badge : 'No Badge Found'}</p>
+        <p>Total View: ${newsId.total_view ? newsId.total_view : 'No Total View Found'}</p>
+    `;
+}
